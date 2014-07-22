@@ -1,6 +1,6 @@
 <html>
  <head>
- <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+ <meta charset="utf-8"> 
  <title>WordUp</title>
  <link rel="stylesheet" type="text/css" href="/css/styles.css">
  <!-- CSS moved to external stylesheet -->
