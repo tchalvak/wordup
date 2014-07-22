@@ -106,11 +106,13 @@ else $theWord = "what word would you like to look up?";
     font-weight: bold;
   }
   .definitionBox {
-    <?php if ($theQuery) echo "border: 1px solid black;"; ?>
     padding: 10px;
     vertical-align: text-top;
     font-family: Arial;
     font-size: 14px;
+  }
+  .query-present .definitionBox{
+    border:1px solid black;
   }
   .tagline {
     font-size: 12px;
@@ -166,7 +168,7 @@ else $theWord = "what word would you like to look up?";
      <tr height=18px><td></td></tr>
     </table>
 
-    <table height=400px>
+    <table height=400px class='<?php if($theQuery){?> echo 'query-present';}?>'>
      <tr align=left valign=top>
       <td width=260px class='definitionBox'>
        <?php if ($theQuery) echo get_dictionary($theQuery,$theWord); ?>
