@@ -1,11 +1,21 @@
 <?php
-
 // Collection of the php functions for the wordup dictionary app.
+
+
+/**
+  * Escape any dirty input or even relatively clean input into modern html, and return it as a string.
+  **/
+function hesc($dirty){
+  // Template echoing & escaping function
+    // ENT_IGNORE is a hack hack hack, see here: http://unicode.org/reports/tr36/#Deletion_of_Noncharacters
+  return htmlentities($dirty, ENT_QUOTES | ENT_IGNORE, 'UTF-8');
+}
+
 
 function string_cleaning ($string,$remove,$replace) {
     foreach ($remove as $it) {
         $string = str_replace($it,$replace,$string);
-        }
+    }
     return $string;
 }
 
@@ -13,7 +23,7 @@ function tag_line ($url,$siteName) {
     return "<table width=100%>
              <tr>
               <td align=right class=tagline height=34px valign=bottom>
-               ( <a href='".$url."'>more at ".$siteName."</a> )
+               ( <a href='".hesc($url)."'>more at ".hesc($siteName)."</a> )
               </td>
              </tr>
             </table>";
@@ -23,7 +33,7 @@ function dictionary_header ($partOfSpeech,$yearFirstUsed) {
     return "<table width=100%>
              <tr>
               <td align=right>
-               <span class=subtext>".$yearFirstUsed."</span> <span class=dates>(".$partOfSpeech.")</span>
+               <span class=subtext>".hesc($yearFirstUsed)."</span> <span class=dates>(".hesc($partOfSpeech).")</span>
               </td>
              </tr>
             </table>";

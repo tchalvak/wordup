@@ -19,6 +19,12 @@ if($theQuery){
   $thesaurus_section = get_thesaurus($theQuery);
 }
 
+$query_present = null;
+if($theQuery){ // Just for the purposes of this example, let's move the if here so that the template can just output the query-present
+  // html class if it's set.
+  $query_present = 'query-present';
+}
+
 ?>
 
 <html>
@@ -52,7 +58,7 @@ if($theQuery){
      <tr height=18px><td></td></tr>
     </table>
 
-    <table height=400px class='<?php if($theQuery){ echo 'query-present';} ?>'>
+    <table height=400px class='<?php echo $query_present;?>'>
      <tr align=left valign=top>
       <td width=260px class='definitionBox'>
         <?php echo $dictionary_section; // Notably unescaped, which has it's dangers ?>
