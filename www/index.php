@@ -12,6 +12,13 @@ if (isset($_GET["q"])) {
   $theWord = "what word would you like to look up?";
 }
 
+$dictionary_section = $slang_section = $thesaurus_section = null;
+if($theQuery){
+  $dictionary_section = get_dictionary($theQuery, $theWord);
+  $slang_section = get_slang($theQuery);
+  $thesaurus_section = get_thesaurus($theQuery);
+}
+
 ?>
 
 <html>
@@ -48,15 +55,15 @@ if (isset($_GET["q"])) {
     <table height=400px class='<?php if($theQuery){ echo 'query-present';} ?>'>
      <tr align=left valign=top>
       <td width=260px class='definitionBox'>
-       <?php if ($theQuery) echo get_dictionary($theQuery,$theWord); ?>
+        <?php echo $dictionary_section; // Notably unescaped, which has it's dangers ?>
       </td>
       <td width=10px></td>
       <td width=260px class='definitionBox'>
-       <?php if ($theQuery) echo get_slang($theQuery); ?>
+       <?php echo $slang_section; // Again, naked dynamic html here ?>
       </td>
       <td width=10px></td>
       <td width=260px class='definitionBox'>
-       <?php if ($theQuery) echo get_thesaurus($theQuery); ?>
+       <?php echo $thesaurus_section; // Naked dynamic html again ?>
       </td>
     </tr>
    </table>
