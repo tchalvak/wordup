@@ -1,0 +1,55 @@
+
+img {
+  margin: 0px;
+  padding: 0px;
+}
+body {
+  margin: 0px;
+  padding: 0px;
+}
+table {
+  width: 100%;
+}
+p {
+  margin-bottom: -0.5em
+}
+.topTable {
+  font-size: 32px;
+  font-weight: bold;
+}
+.definitionBox {
+  padding: 10px;
+  vertical-align: text-top;
+  font-family: Arial;
+  font-size: 14px;
+}
+.query-present .definitionBox{ /* Accent the definition box only when the .query-present class is actually around */
+  border:1px solid black;
+}
+.tagline {
+  font-size: 12px;
+}
+.subtext {
+  font-size: 12px;
+  color: #666666;
+  font-family: Times;
+}
+.dates {
+  font-size: 14px;
+  font-weight: bold;
+  color: #666666;
+  font-family: Times;
+}
+
+a:link {
+  color: #990000;
+  font-weight: bold;
+  text-decoration: none;
+  font-family: Times;
+}
+a:visited {
+  color: #990000;
+  font-weight: bold;
+  text-decoration: none;
+  font-family: Times;
+}

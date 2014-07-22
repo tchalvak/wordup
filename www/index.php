@@ -38,13 +38,16 @@ function get_dictionary ($theQuery,$theWord) {
           $content .= "<p>".dictionary_header($thisEntry->fl, $thisEntry->def->date)."</p>";
           foreach($def->dt as $dt) {
             $content .= "<p>".strip_tags($dt->asXML())."</p>";
-            }
           }
         }
       }
-    if ($content != "") return string_cleaning($content,array("  ", ": ", " :", ":"),"").tag_line($link,"merriam-webster");
-    else return "no results at merriam-webster";
     }
+    if ($content != "") {
+      return string_cleaning($content,array("  ", ": ", " :", ":"),"").tag_line($link,"merriam-webster");
+    } else {
+      return "no results at merriam-webster";
+    }
+}
 
 function get_slang ($theQuery) {
     //URBAN DICTIONARY
@@ -56,7 +59,7 @@ function get_slang ($theQuery) {
              "<p><i>".$obj->list[0]->example."</i></p>".
              tag_line($link,"urban dictionary");
     else return "no results at urban dictionary";
-    }
+}
 
 function get_thesaurus ($theQuery) {
     //ALTERVISTA by way of WIKISAURUS
@@ -68,17 +71,21 @@ function get_thesaurus ($theQuery) {
         $content .= "<p><span class=dates>".$response->list->{'category'}."</span> ".
                     string_cleaning($response->list->{'synonyms'},array(" (similar term)"," (related term)"),"").
                     "</p>";
-        }
       }
-    if ($content != "") return string_cleaning($content,array("|"),", ").tag_line($link,"wikisaurus");
-    else return "no results at wikisaurus";
     }
+    if ($content != "") {
+      return string_cleaning($content,array("|"),", ").tag_line($link,"wikisaurus");
+    } else {
+      return "no results at wikisaurus";
+    }
+}
 
 if (isset($_GET["q"])) {
     $theWord = $_GET["q"];
     $theQuery = urlencode($_GET["q"]);
-    }
-else $theWord = "what word would you like to look up?";
+} else {
+  $theWord = "what word would you like to look up?";
+}
 
 ?>
 
@@ -86,63 +93,8 @@ else $theWord = "what word would you like to look up?";
  <head>
  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
  <title>WordUp</title>
- <style>
-  img {
-    margin: 0px;
-    padding: 0px;
-  }
-  body {
-    margin: 0px;
-    padding: 0px;
-  }
-  table {
-    width: 100%;
-  }
-  p {
-    margin-bottom: -0.5em
-  }
-  .topTable {
-    font-size: 32px;
-    font-weight: bold;
-  }
-  .definitionBox {
-    padding: 10px;
-    vertical-align: text-top;
-    font-family: Arial;
-    font-size: 14px;
-  }
-  .query-present .definitionBox{
-    border:1px solid black;
-  }
-  .tagline {
-    font-size: 12px;
-  }
-  .subtext {
-    font-size: 12px;
-    color: #666666;
-    font-family: Times;
-  }
-  .dates {
-    font-size: 14px;
-    font-weight: bold;
-    color: #666666;
-    font-family: Times;
-  }
-  
-  a:link {
-    color: #990000;
-    font-weight: bold;
-    text-decoration: none;
-    font-family: Times;
-  }
-  a:visited {
-    color: #990000;
-    font-weight: bold;
-    text-decoration: none;
-    font-family: Times;
-  }
-
- </style>
+ <link rel="stylesheet" type="text/css" href="/css/styles.css">
+ <!-- CSS moved to external stylesheet -->
 </head>
 
 <body>
@@ -168,7 +120,7 @@ else $theWord = "what word would you like to look up?";
      <tr height=18px><td></td></tr>
     </table>
 
-    <table height=400px class='<?php if($theQuery){?> echo 'query-present';}?>'>
+    <table height=400px class='<?php if($theQuery){ echo 'query-present';} ?>'>
      <tr align=left valign=top>
       <td width=260px class='definitionBox'>
        <?php if ($theQuery) echo get_dictionary($theQuery,$theWord); ?>
