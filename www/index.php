@@ -114,7 +114,7 @@ if (isset($_GET["q"])) {
         <form method="get"><input type="text" name="q" style="width:200px; height:32px;" />
       </td>
       <td>
-        <img src='img/icon-search.png' style='height: 32px; width: 32px;' />
+        <img src='img/icon_info_1.svg' style='height: 32px; width: 32px;' />
       </td>
      </tr>
      <tr height=18px><td></td></tr>
