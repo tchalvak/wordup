@@ -44,6 +44,7 @@ function get_dictionary ($theQuery,$theWord) {
     $url = "http://www.dictionaryapi.com/api/v1/references/collegiate/xml/".$theQuery."?key=fdc0715f-87eb-4a06-bc48-fe6da57bdbeb";
     $link = "http://www.merriam-webster.com/dictionary/".$theQuery;
     $xml = simplexml_load_string(file_get_contents($url));
+    $content = '';
     foreach($xml->entry as $thisEntry) {
       if ($thisEntry->ew == $theWord) {
         foreach($thisEntry->def as $def) {
@@ -78,6 +79,7 @@ function get_thesaurus ($theQuery) {
     $url = "http://thesaurus.altervista.org/thesaurus/v1?word=".$theQuery."&language=en_US&key=hxOhANiwzBrCfVum3GIH&output=json";
     $link = "http://en.wiktionary.org/wiki/".$theQuery."#Synonyms";
     $obj = json_decode(file_get_contents($url));
+    $content = '';
     if (isset($obj->response)) {
       foreach ($obj->response as $response) {
         $content .= "<p><span class=dates>".$response->list->{'category'}."</span> ".
